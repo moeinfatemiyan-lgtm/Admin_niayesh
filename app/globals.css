@@ -139,3 +139,21 @@
  .mobile-contact-bar .button{width:100%;min-height:48px}
 }
 @media(prefers-reduced-motion:reduce){.mobile-contact-bar .button{animation:none!important}}
+
+/* Service inquiry form */
+.inquiry-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(28px,6vw,76px);align-items:start}
+.inquiry-copy h2{font-size:clamp(2rem,4vw,3.1rem);line-height:1.45;margin:14px 0}
+.inquiry-copy h2 span{color:var(--pink,#efa1bf)}
+.inquiry-copy p{color:var(--muted,#b9adb7);line-height:2}
+.inquiry-form{padding:clamp(20px,3vw,32px);border:1px solid rgba(242,167,196,.18);border-radius:24px;background:rgba(255,255,255,.025);display:grid;gap:18px}
+.inquiry-form fieldset{border:0;padding:0;margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.inquiry-form legend{font-weight:700;margin-bottom:12px}
+.inquiry-option{display:flex;align-items:center;gap:9px;border:1px solid rgba(242,167,196,.15);border-radius:12px;padding:12px;font-size:.92rem;cursor:pointer}
+.inquiry-option input{accent-color:#e99abb;width:17px;height:17px;flex-shrink:0}
+.inquiry-label{display:grid;gap:8px;font-size:.92rem;font-weight:600}
+.inquiry-label input,.inquiry-label select{width:100%;min-height:48px;padding:12px 14px;border-radius:12px;border:1px solid rgba(242,167,196,.2);background:#211a23;color:inherit;font:inherit;outline:none}
+.inquiry-label input:focus,.inquiry-label select:focus{border-color:#e99abb;box-shadow:0 0 0 3px rgba(233,154,187,.12)}
+.inquiry-label select option{background:#211a23;color:#fff}
+.inquiry-submit{width:100%;justify-content:center;min-height:50px}
+.inquiry-note{font-size:.8rem;color:var(--muted,#b9adb7);line-height:1.9;margin:0}
+@media(max-width:760px){.inquiry-grid{grid-template-columns:1fr}.inquiry-form fieldset{grid-template-columns:1fr}.inquiry-form{border-radius:18px}}
