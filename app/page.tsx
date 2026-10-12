@@ -17,6 +17,21 @@ export default function Home() {
  const [openFaq, setOpenFaq] = useState(0);
  const closeMenu = () => setMenuOpen(false);
  useEffect(() => {
+  const elements = document.querySelectorAll(".service-card, .portfolio-card, .process-step, .about-frame, .about-copy, .faq-item");
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  elements.forEach((element) => element.classList.add("reveal-ready"));
+  const observer = new IntersectionObserver((entries) => {
+   entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+     entry.target.classList.add("is-visible");
+     observer.unobserve(entry.target);
+    }
+   });
+  }, { threshold: 0.14, rootMargin: "0px 0px -28px 0px" });
+  elements.forEach((element) => observer.observe(element));
+  return () => observer.disconnect();
+ }, []);
+ useEffect(() => {
   if (!menuOpen) return;
   const handleEscape = (event: KeyboardEvent) => {
    if (event.key === "Escape") closeMenu();
