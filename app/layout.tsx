@@ -31,7 +31,25 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="fa" dir="rtl">
-      <body>{children}</body>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ProfessionalService",
+              name: "ادمین نیایش",
+              alternateName: "Admin Niayesh",
+              url: "https://admin-niayesh.vercel.app",
+              description: "مدیریت حرفه‌ای اینستاگرام، ایده‌پردازی، سناریونویسی و تولید محتوای هدفمند.",
+              sameAs: ["https://instagram.com/admin.niaayesh"],
+              areaServed: "IR",
+              serviceType: ["مدیریت پیج اینستاگرام", "سناریونویسی", "تولید محتوا"]
+            })
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }
