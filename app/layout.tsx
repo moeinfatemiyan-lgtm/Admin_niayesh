@@ -48,6 +48,41 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             })
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: "همکاری از کجا شروع می‌شود؟",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "در دایرکت، حوزه فعالیت، هدف اصلی و خدمات موردنیاز را بفرستید. پس از شناخت اولیه، درباره مسیر، زمان‌بندی و جزئیات همکاری صحبت می‌کنیم."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  name: "برای هر کسب‌وکار برنامه جداگانه دارید؟",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "بله. موضوع‌ها، لحن و قالب‌ها باید با مخاطب و ظرفیت اجرایی همان کسب‌وکار هماهنگ شوند."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  name: "چطور نمونه‌کارها را ببینم؟",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "حوزه فعالیت و نوع محتوایی را که می‌خواهید ببینید در دایرکت بفرستید تا نمونه‌های مرتبطِ قابل ارائه معرفی شوند."
+                  }
+                }
+              ]
+            })
+          }}
+        />
         {children}
       </body>
     </html>
