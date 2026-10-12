@@ -157,3 +157,5 @@
 .inquiry-submit{width:100%;justify-content:center;min-height:50px}
 .inquiry-note{font-size:.8rem;color:var(--muted,#b9adb7);line-height:1.9;margin:0}
 @media(max-width:760px){.inquiry-grid{grid-template-columns:1fr}.inquiry-form fieldset{grid-template-columns:1fr}.inquiry-form{border-radius:18px}}
+
+.inquiry-message{width:100%;resize:vertical;padding:12px 14px;border-radius:12px;border:1px solid rgba(242,167,196,.2);background:#211a23;color:inherit;font:inherit;line-height:1.8}
