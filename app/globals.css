@@ -54,3 +54,60 @@
  .contact-panel{border-radius:17px}
 }
 @media(prefers-reduced-motion:reduce){.portfolio-card,.portfolio-art,.service-card:before{transition:none}}
+
+
+/* Subtle motion design: ambient movement, gentle entrances and tactile hover states */
+@keyframes niayesh-fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes niayesh-float {
+  0%,100% { translate: 0 0; }
+  50% { translate: 0 -9px; }
+}
+@keyframes niayesh-orbit {
+  from { rotate: 0deg; }
+  to { rotate: 360deg; }
+}
+@keyframes niayesh-glow {
+  0%,100% { opacity: .55; scale: 1; }
+  50% { opacity: .95; scale: 1.08; }
+}
+@keyframes niayesh-soft-pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(242,167,196,0); }
+  50% { box-shadow: 0 0 0 5px rgba(242,167,196,.07); }
+}
+.hero-copy > * { animation: niayesh-fade-up .65s both; }
+.hero-copy > *:nth-child(2) { animation-delay: .07s; }
+.hero-copy > *:nth-child(3) { animation-delay: .14s; }
+.hero-copy > *:nth-child(4) { animation-delay: .21s; }
+.hero-copy > *:nth-child(5) { animation-delay: .28s; }
+.visual-card { animation: niayesh-fade-up .8s .12s both, niayesh-float 6s 1s ease-in-out infinite; }
+.orbit-outer { animation: niayesh-orbit 48s linear infinite; }
+.orbit-inner { animation: niayesh-orbit 36s linear infinite reverse; }
+.glow-one { animation: niayesh-glow 7s ease-in-out infinite; }
+.floating-top { animation: niayesh-float 5s ease-in-out infinite; }
+.floating-bottom { animation: niayesh-float 5.8s .5s ease-in-out infinite; }
+.brand-mark { transition: transform .28s ease, border-radius .28s ease, box-shadow .28s ease; }
+.brand:hover .brand-mark { transform: rotate(-7deg) scale(1.05); border-radius: 12px; }
+.nav-cta,.footer-social,.service-icon,.faq-plus { transition: transform .22s ease, background .22s ease, border-color .22s ease, color .22s ease; }
+.nav-cta:hover,.footer-social:hover { transform: translateY(-2px); }
+.service-card:hover .service-icon { transform: rotate(-5deg) scale(1.06); background: rgba(242,167,196,.17); }
+.button { position: relative; overflow: hidden; isolation: isolate; }
+.button::after { content: ""; position: absolute; inset-block: -50%; left: -70%; width: 35%; transform: skewX(-20deg); background: linear-gradient(90deg,transparent,rgba(255,255,255,.24),transparent); transition: left .55s ease; z-index: -1; pointer-events: none; }
+.button:hover::after { left: 140%; }
+.faq-item button:hover .faq-plus { transform: rotate(90deg); border-color: rgba(242,167,196,.4); }
+.contact-panel .button { animation: niayesh-soft-pulse 4.5s 1.5s ease-in-out infinite; }
+@media (max-width:760px) {
+  .hero-copy > * { animation-duration: .5s; }
+  .visual-card { animation: niayesh-fade-up .7s .1s both; }
+  .orbit-outer { animation-duration: 60s; }
+  .orbit-inner { animation-duration: 50s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-copy > *, .visual-card, .orbit-outer, .orbit-inner, .glow-one,
+  .floating-top, .floating-bottom, .contact-panel .button {
+    animation: none !important;
+  }
+  .button::after { display: none; }
+}
