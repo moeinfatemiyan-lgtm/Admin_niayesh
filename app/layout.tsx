@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://admin-niayesh.vercel.app"),
+  alternates: { canonical: "/" },
   title: "ادمین نیایش | مدیریت پیج و تولید محتوا",
   description: "مدیریت حرفه‌ای اینستاگرام، ایده‌پردازی، سناریونویسی و تولید محتوای هدفمند برای رشد برند شما.",
   applicationName: "Admin Niayesh",
@@ -9,8 +11,15 @@ export const metadata: Metadata = {
     title: "ادمین نیایش | مدیریت پیج و تولید محتوا",
     description: "از ایده تا انتشار؛ همراه شما برای ساختن یک پیج حرفه‌ای‌تر.",
     locale: "fa_IR",
-    type: "website"
-  }
+    type: "website",
+    url: "https://admin-niayesh.vercel.app"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ادمین نیایش | مدیریت پیج و تولید محتوا",
+    description: "مدیریت حرفه‌ای اینستاگرام، ایده‌پردازی، سناریونویسی و تولید محتوای هدفمند برای رشد برند شما."
+  },
+  robots: { index: true, follow: true }
 };
 
 export const viewport: Viewport = {
