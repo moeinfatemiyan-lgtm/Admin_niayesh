@@ -120,3 +120,22 @@
 .service-card.reveal-ready:nth-child(3),.portfolio-card.reveal-ready:nth-child(3),.process-step.reveal-ready:nth-child(3){transition-delay:.14s}
 .service-card.reveal-ready:nth-child(4),.process-step.reveal-ready:nth-child(4){transition-delay:.21s}
 @media(prefers-reduced-motion:reduce){.reveal-ready,.reveal-ready.is-visible{opacity:1;transform:none;transition:none}}
+
+/* Mobile conversion shortcut */
+.mobile-contact-bar{display:none}
+@media(max-width:760px){
+ body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+ .mobile-contact-bar{
+  display:block;
+  position:fixed;
+  z-index:60;
+  inset-inline:0;
+  bottom:0;
+  padding:10px 18px calc(10px + env(safe-area-inset-bottom));
+  border-top:1px solid rgba(242,167,196,.18);
+  background:rgba(23,19,25,.92);
+  backdrop-filter:blur(16px);
+ }
+ .mobile-contact-bar .button{width:100%;min-height:48px}
+}
+@media(prefers-reduced-motion:reduce){.mobile-contact-bar .button{animation:none!important}}
