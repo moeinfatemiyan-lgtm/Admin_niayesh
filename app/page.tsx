@@ -15,6 +15,8 @@ const faqs = [["همکاری از کجا شروع می‌شود؟", "در دای
 export default function Home() {
  const [menuOpen, setMenuOpen] = useState(false);
  const [openFaq, setOpenFaq] = useState(0);
+ const [inquiryMessage, setInquiryMessage] = useState("");
+ const [inquiryStatus, setInquiryStatus] = useState("");
  const closeMenu = () => setMenuOpen(false);
  useEffect(() => {
   const elements = document.querySelectorAll(".service-card, .portfolio-card, .process-step, .about-frame, .about-copy, .faq-item");
@@ -57,13 +59,15 @@ export default function Home() {
   <section className="inquiry section" id="inquiry">
    <div className="container inquiry-grid">
     <div className="inquiry-copy"><span className="section-kicker">LET'S PLAN YOUR CONTENT</span><h2>برای پیجت دنبال <span>چه خدمتی</span> هستی؟</h2><p>چند مورد را انتخاب کن و متن آماده را در دایرکت بفرست تا گفت‌وگو دقیق‌تر شروع شود. ارسال پیام فقط با اقدام خودت انجام می‌شود.</p></div>
-    <form className="inquiry-form" onSubmit={(event)=>{event.preventDefault();const data=new FormData(event.currentTarget);const services= data.getAll("service").map(String).join("، ")||"نیاز به مشاوره دارم";const goal=String(data.get("goal")||"");const page=String(data.get("page")||"");const budget=String(data.get("budget")||"فعلاً مشخص نیست");const message="سلام، برای همکاری با ادمین نیایش پیام می‌دم.\nخدمات موردنیاز: "+services+"\nهدف من: "+(goal||"هنوز مشخص نیست")+"\nپیج/حوزه فعالیت: "+(page||"هنوز وارد نکردم")+"\nبودجه تقریبی: "+budget+"\nلطفاً راهنمایی‌ام کنید.";window.open(instagram+"?text="+encodeURIComponent(message),"_blank","noopener,noreferrer");}}>
+    <form className="inquiry-form" onSubmit={async (event)=>{event.preventDefault();const data=new FormData(event.currentTarget);const services=data.getAll("service").map(String).join("، ")||"نیاز به مشاوره دارم";const goal=String(data.get("goal")||"");const page=String(data.get("page")||"");const budget=String(data.get("budget")||"فعلاً مشخص نیست");const message="سلام، برای همکاری با ادمین نیایش پیام می‌دم.\\nخدمات موردنیاز: "+services+"\\nهدف من: "+(goal||"هنوز مشخص نیست")+"\\nپیج/حوزه فعالیت: "+(page||"هنوز وارد نکردم")+"\\nبودجه تقریبی: "+budget+"\\nلطفاً راهنمایی‌ام کنید.";setInquiryMessage(message);let copied=false;try{await navigator.clipboard.writeText(message);copied=true;}catch{}setInquiryStatus(copied?"متن درخواست کپی شد؛ در دایرکت پیستش کن و ارسال کن.":"اگر متن کپی نشد، از کادر پایین کپی‌اش کن و در دایرکت بفرست.");window.open(instagram,"_blank","noopener,noreferrer");}}>{event.preventDefault();const data=new FormData(event.currentTarget);const services= data.getAll("service").map(String).join("، ")||"نیاز به مشاوره دارم";const goal=String(data.get("goal")||"");const page=String(data.get("page")||"");const budget=String(data.get("budget")||"فعلاً مشخص نیست");const message="سلام، برای همکاری با ادمین نیایش پیام می‌دم.\nخدمات موردنیاز: "+services+"\nهدف من: "+(goal||"هنوز مشخص نیست")+"\nپیج/حوزه فعالیت: "+(page||"هنوز وارد نکردم")+"\nبودجه تقریبی: "+budget+"\nلطفاً راهنمایی‌ام کنید.";window.open(instagram+"?text="+encodeURIComponent(message),"_blank","noopener,noreferrer");}}>
      <fieldset><legend>چه خدماتی نیاز داری؟</legend><label className="inquiry-option"><input type="checkbox" name="service" value="مدیریت پیج"/> مدیریت پیج</label><label className="inquiry-option"><input type="checkbox" name="service" value="سناریونویسی"/> سناریونویسی</label><label className="inquiry-option"><input type="checkbox" name="service" value="ایده‌پردازی محتوا"/> ایده‌پردازی محتوا</label><label className="inquiry-option"><input type="checkbox" name="service" value="استراتژی رشد"/> استراتژی رشد</label><label className="inquiry-option"><input type="checkbox" name="service" value="مشاوره و انتخاب خدمت"/> هنوز مطمئن نیستم / مشاوره</label></fieldset>
      <label className="inquiry-label">هدفت از اینستاگرام چیه؟<select name="goal" defaultValue=""><option value="">انتخاب کن (اختیاری)</option><option>معرفی برند یا کسب‌وکار</option><option>نظم‌دادن به تولید محتوا</option><option>جذب مخاطب مرتبط</option><option>معرفی و فروش خدمات یا محصول</option><option>هنوز نیاز به بررسی دارم</option></select></label>
      <label className="inquiry-label">آیدی پیج یا حوزه فعالیت <input name="page" placeholder="مثلاً @yourpage یا فروشگاه پوشاک"/></label>
      <label className="inquiry-label">بودجه تقریبی (اختیاری)<select name="budget" defaultValue=""><option value="">فعلاً مشخص نیست</option><option>نیاز به پیشنهاد قیمت دارم</option><option>اقتصادی</option><option>متوسط</option><option>قابل مذاکره بر اساس خدمات</option></select></label>
      <button className="button button-primary inquiry-submit" type="submit"><MessageCircle size={18}/> آماده‌کردن پیام دایرکت <ArrowLeft size={17}/></button>
-     <p className="inquiry-note">این فرم اطلاعات را در سایت ذخیره نمی‌کند؛ متن پیام را آماده می‌کند و تو می‌توانی آن را در اینستاگرام بررسی و ارسال کنی.</p>
+     <p className="inquiry-note">اطلاعات این فرم در سایت ذخیره نمی‌شود؛ پیام فقط برای شروع گفت‌وگو آماده می‌شود.</p>
+     {inquiryStatus&&<p className="inquiry-note" role="status">{inquiryStatus}</p>}
+     {inquiryMessage&&<label className="inquiry-label">متن آماده پیام<textarea className="inquiry-message" readOnly rows={6} value={inquiryMessage} onFocus={(event)=>event.currentTarget.select()} /></label>}
     </form>
    </div>
   </section>
